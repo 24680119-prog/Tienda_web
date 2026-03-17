@@ -293,4 +293,149 @@ En conjunto, este contenedor permite mostrar múltiples productos de forma orden
     )
 
 ```
+## Función para Mostrar los Productos en la Interfaz
+En esta sección del código se define la función mostrar_productos, la cual se encarga de generar y mostrar dinámicamente las tarjetas de productos en la interfaz gráfica. La función recibe como parámetro una lista llamada lista, que contiene los productos que se desean mostrar. Esto permite reutilizar la función tanto para mostrar todos los productos como para mostrar resultados filtrados.
+
+Primero, se utiliza grid.controls.clear() para eliminar cualquier elemento que ya esté presente en el contenedor grid. Esto es importante para evitar que los productos se dupliquen cuando la función se ejecuta varias veces. Luego, se recorre la lista de productos utilizando un ciclo for. En cada iteración, se crea una nueva instancia de la clase ProductCard, enviando como argumentos el producto actual y la función agregar_carrito. Cada tarjeta generada se agrega al contenedor grid mediante el método append.
+
+Por ultimmo se llama a page.update() para actualizar la interfaz gráfica y reflejar los cambios realizados en pantalla, de esta manera, esta función permite construir de forma dinámica la vista de productos, facilitando la actualización de la interfaz cuando cambian los datos, como en el caso de un filtrado o búsqueda.
+
+```python
+    def mostrar_productos(lista):
+
+        grid.controls.clear()
+
+        for producto in lista:
+            grid.controls.append(ProductCard(producto, agregar_carrito))
+
+        page.update()
+
+```
+## Función de Búsqueda y Filtrado de Productos
+
+En esta parte del código se define la función filtrar_productos, la cual permite realizar una búsqueda dinámica de productos según el texto ingresado por el usuario.
+
+La función recibe como parámetro una cadena de texto llamada texto, que corresponde a lo que el usuario escribe en el campo de búsqueda.
+
+Primero, se crea una lista vacía llamada filtrados, la cual se utilizará para almacenar únicamente los productos que coincidan con la búsqueda.
+
+Luego, se recorre la lista completa de productos mediante un ciclo for. En cada iteración, se toma un producto y se evalúa si el texto ingresado está contenido dentro del nombre del producto. Para ello, se utiliza el método lower(), tanto en el texto de búsqueda como en el nombre del producto, con el fin de hacer la comparación sin distinguir entre mayúsculas y minúsculas.
+
+Si el nombre del producto contiene el texto buscado, dicho producto se agrega a la lista filtrados.
+
+Finalmente, se llama a la función mostrar_productos, enviando la lista filtrada como argumento. Esto permite actualizar la interfaz gráfica y mostrar únicamente los productos que coinciden con la búsqueda.
+
+De esta manera, se implementa un sistema de búsqueda en tiempo real que mejora la interacción del usuario con la aplicación.
+
+```python
+    def filtrar_productos(texto):
+
+        filtrados = []
+
+        for p in productos:
+            if texto.lower() in p["nombre"].lower():
+                filtrados.append(p)
+
+        mostrar_productos(filtrados)
+
+```
+## Implementación del Buscador de Productos
+En esta sección del código se implementa el campo de búsqueda que permite al usuario filtrar los productos de manera dinámica. Se crea un componente TextField llamado buscador, el cual funciona como una barra de búsqueda donde el usuario puede escribir el nombre del producto que desea encontrar. El atributo hint_text muestra un texto de ayuda dentro del campo ("Buscar producto..."), indicando su función.
+
+Además, se configuran propiedades visuales como el ancho (width), el color de fondo (bgcolor) y los estilos del texto y del placeholder (hint_style), estableciendo color negro y negrita para mejorar la visibilidad. La propiedad más importante es on_change, la cual se ejecuta cada vez que el usuario escribe o modifica el contenido del campo. En este caso, se utiliza una función lambda que llama a la función filtrar_productos, enviando como argumento el texto actual ingresado por el usuario (e.control.value). Esto permite que la búsqueda se realice en tiempo real.
+
+Finalmente, se llama a la función mostrar_productos(productos), la cual se encarga de mostrar todos los productos al inicio de la aplicación, antes de que el usuario realice cualquier búsqueda.
+```python
+    buscador = ft.TextField(
+        hint_text="Buscar producto...",
+        width=300,
+        bgcolor=ft.Colors.WHITE,
+        text_style=ft.TextStyle(
+            color=ft.Colors.BLACK,
+            weight=ft.FontWeight.BOLD
+        ),
+        hint_style=ft.TextStyle(
+            color=ft.Colors.BLACK,
+            weight=ft.FontWeight.BOLD
+        ),
+        on_change=lambda e: filtrar_productos(e.control.value)
+    )
+
+
+    mostrar_productos(productos)
+
+
+
+```
+## Diseño del Encabezado de la Aplicación
+En esta sección del código se define el encabezado (header) de la aplicación, el cual se utiliza para mostrar el título de la tienda y el acceso al carrito de compras. Para organizar los elementos, se utiliza un componente Row, que permite alinear los elementos de forma horizontal. El parámetro alignment=MainAxisAlignment.SPACE_BETWEEN distribuye los elementos dejando espacio entre ellos, posicionando el título a la izquierda y el carrito a la derecha.
+
+Dentro del encabezado, el primer elemento es un componente Text que muestra el título "TIENDA DE TECNOLOGÍA". Este texto se presenta con un tamaño grande, en negrita y color negro, con el objetivo de destacar el nombre de la aplicación. El segundo elemento es otro Row que contiene los componentes relacionados con el carrito de compras. Dentro de este se incluye un botón de tipo IconButton con el ícono de un carrito. Este botón tiene asignado el evento on_click, el cual ejecuta la función mostrar_carrito cuando el usuario hace clic, permitiendo visualizar los productos agregados.
+
+Junto al botón se encuentra el componente contador, el cual muestra la cantidad total de productos en el carrito. Este valor se actualiza dinámicamente conforme el usuario agrega productos. En conjunto, este encabezado proporciona una estructura clara y funcional que facilita la navegación y el acceso rápido al carrito dentro de la aplicación.
+
+```python
+    header = ft.Row(
+        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+        controls=[
+
+            ft.Text(
+                "TIENDA DE TECNOLOGÍA",
+                size=30,
+                weight=ft.FontWeight.BOLD,
+                color=ft.Colors.BLACK
+            ),
+
+            ft.Row(
+                controls=[
+                    ft.IconButton(
+                        icon=ft.Icons.SHOPPING_CART,
+                        on_click=mostrar_carrito
+                    ),
+                    contador
+                ]
+            )
+        ]
+    )
+
+
+```
+
+## Construcción de la Interfaz y Ejecución de la Aplicación
+En esta parte final del código se agregan todos los componentes a la página y se ejecuta la aplicación, primero, se utiliza el método page.add() para incorporar los elementos visuales a la interfaz en el orden en que se desean mostrar. Entre estos elementos se incluye el encabezado (header), el buscador, el contenedor de productos (grid) y un divisor visual (Divider) que separa las secciones de la aplicación.
+
+Posteriormente, se agrega un componente de texto con el título "PRODUCTOS EN CARRITO", el cual sirve para identificar la sección donde se mostrarán los productos seleccionados por el usuario. Debajo de este título se incluye el componente texto_carrito, que se actualiza dinámicamente para mostrar el contenido del carrito.
+Finalmente, se utiliza la función ft.run(main, assets_dir="assets") para ejecutar la aplicación. Esta instrucción indica que la función principal main es el punto de inicio del programa. Además, el parámetro assets_dir="assets" especifica la carpeta donde se encuentran los recursos locales, como las imágenes de los productos, permitiendo que el framework pueda cargarlos correctamente.
+
+```python
+    page.add(
+        header,
+        buscador,
+        grid,
+        ft.Divider(),
+        ft.Text(
+            "PRODUCTOS EN CARRITO",
+            size=20,
+            weight=ft.FontWeight.BOLD,
+            color=ft.Colors.BLACK
+        ),
+        texto_carrito
+    )
+
+
+ft.run(main, assets_dir="assets")
+```
+
+
+## Diagrama de Clases de la Aplicación
+El diagrama de clases representa de forma visual la estructura del programa, mostrando las clases utilizadas y la relación entre ellas.
+
+En esta aplicación se identifican dos elementos principales: la clase ProductCard y la función principal main. La clase ProductCard es un componente personalizado que hereda de la clase Container del framework Flet, lo que le permite comportarse como un elemento visual dentro de la interfaz.
+
+Por otro lado, la función main actúa como el controlador principal de la aplicación, ya que se encarga de crear la interfaz gráfica, gestionar los datos y generar múltiples instancias de la clase ProductCard para mostrar los productos.
+
+La relación entre ambos elementos se da cuando la función main crea objetos de la clase ProductCard dentro del contenedor grid, enviando como parámetros la información de cada producto y la función para agregar al carrito. Esto demuestra una relación de uso, donde la clase principal utiliza la clase personalizada para construir la interfaz.
+
+De esta manera, el diagrama de clases permite comprender cómo se organiza el programa, destacando el uso de la Programación Orientada a Objetos mediante la creación de componentes reutilizables.
+
 
