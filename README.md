@@ -437,4 +437,27 @@ La relación entre ambos elementos se da cuando la función main crea objetos de
 
 De esta manera, el diagrama de clases permite comprender cómo se organiza el programa, destacando el uso de la Programación Orientada a Objetos mediante la creación de componentes reutilizables.
 
+```mermaid
+classDiagram
+
+    class Container {
+    }
+
+    class ProductCard {
+        - producto
+        - favorito
+        + __init__()
+        + toggle_favorito()
+    }
+
+    class main {
+        + agregar_carrito()
+        + mostrar_carrito()
+        + filtrar_productos()
+        + mostrar_productos()
+    }
+
+    Container <|-- ProductCard
+    main --> ProductCard
+
 
