@@ -216,4 +216,81 @@ De esta manera, esta función permite visualizar de forma clara y organizada los
 ```
 
 
+## Definición de la Lista de Productos
+En esta sección del código se define una lista llamada productos, la cual contiene la información de todos los artículos que se mostrarán en la tienda.
+
+Esta lista está compuesta por varios diccionarios, donde cada diccionario representa un producto diferente. Cada producto incluye atributos específicos que describen sus características, como el identificador (id), el nombre (nombre), la descripción (descripcion), el precio (precio) y la ruta de la imagen (ruta_imagen).
+
+El campo id permite identificar de manera única cada producto, mientras que el nombre y la descripción proporcionan información textual para el usuario. El precio indica el costo del producto y se utiliza posteriormente para mostrarlo en la interfaz. Por otro lado, la ruta_imagen especifica el nombre del archivo de la imagen que se encuentra almacenado en la carpeta de recursos (assets).
+
+Esta estructura de datos permite organizar la información de forma clara y facilita su uso dentro del programa, ya que se puede recorrer la lista para generar dinámicamente las tarjetas de productos en la interfaz gráfica.
+
+En conjunto, la lista productos actúa como la fuente de datos principal de la aplicación, permitiendo mostrar múltiples elementos de manera automática sin necesidad de crear cada uno manualmente.
+
+```python
+    productos = [
+
+        {
+            "id": 1,
+            "nombre": "Computadora",
+            "descripcion": "Computadora de alto rendimiento",
+            "precio": 20000,
+            "ruta_imagen": "computadora.jpg"
+        },
+
+        {
+            "id": 2,
+            "nombre": "Bocina Bluetooth",
+            "descripcion": "Bocina portátil",
+            "precio": 900,
+            "ruta_imagen": "bocina.jpg"
+        },
+
+        {
+            "id": 3,
+            "nombre": "Televisión",
+            "descripcion": "Smart TV 4K",
+            "precio": 7500,
+            "ruta_imagen": "television.jpg"
+        },
+
+        {
+            "id": 4,
+            "nombre": "Audífonos",
+            "descripcion": "Audio envolvente",
+            "precio": 1200,
+            "ruta_imagen": "audifonos.jpg"
+        },
+
+        {
+            "id": 5,
+            "nombre": "Teclado Mecánico",
+            "descripcion": "Teclado RGB",
+            "precio": 1500,
+            "ruta_imagen": "teclado.jpg"
+        }
+
+    ]
+
+```
+##  Configuración del Contenedor de Productos (Grid)
+En esta parte del código se crea un contenedor llamado grid utilizando el componente Row del framework Flet. Este contenedor se utiliza para organizar y mostrar todas las tarjetas de productos dentro de la interfaz.
+
+El parámetro wrap=True permite que los elementos se acomoden automáticamente en varias filas cuando no hay suficiente espacio horizontal, logrando un efecto similar a una cuadrícula adaptable.
+
+La propiedad spacing=20 define el espacio horizontal entre cada elemento, mientras que run_spacing=20 establece la separación vertical entre las filas de productos.
+
+Además, se utiliza alignment=MainAxisAlignment.CENTER para centrar los elementos dentro del contenedor, lo que mejora la presentación visual de la aplicación.
+
+En conjunto, este contenedor permite mostrar múltiples productos de forma ordenada, responsiva y visualmente equilibrada, facilitando la navegación del usuario dentro de la tienda.
+
+```python
+    grid = ft.Row(
+        wrap=True,
+        spacing=20,
+        run_spacing=20,
+        alignment=ft.MainAxisAlignment.CENTER
+    )
+
+```
 
