@@ -426,7 +426,6 @@ Finalmente, se utiliza la función ft.run(main, assets_dir="assets") para ejecut
 ft.run(main, assets_dir="assets")
 ```
 
-
 ## Diagrama de Clases de la Aplicación
 El diagrama de clases representa de forma visual la estructura del programa, mostrando las clases utilizadas y la relación entre ellas.
 
