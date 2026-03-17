@@ -461,3 +461,23 @@ classDiagram
     main --> ProductCard
 
 
+
+
+```
+
+## Explicación de la Herencia en el Componente Personalizado
+En este proyecto se aplica el concepto de herencia de la Programación Orientada a Objetos para crear un componente personalizado dentro de la aplicación. La clase ProductCard hereda de la clase base Container del framework Flet, lo cual se observa en la siguiente línea de código: class ProductCard(ft.Container):.
+
+Esto significa que ProductCard puede utilizar todas las propiedades y características que ya tiene Container, como el manejo de tamaños, colores, márgenes, bordes y la capacidad de contener otros elementos visuales.
+
+Además, dentro del constructor se utiliza la instrucción super().__init__(), la cual permite llamar al constructor de la clase padre. Esto asegura que el componente herede correctamente todas sus funcionalidades antes de agregar las características propias de la tarjeta de producto.
+
+Gracias a la herencia, no es necesario crear el componente desde cero, ya que se reutiliza la estructura de Container y se extiende con nuevas funcionalidades, como mostrar información del producto, imágenes y botones de interacción. Esto facilita el desarrollo, mejora la organización del código y permite reutilizar componentes dentro de la aplicación.
+
+```python
+class ProductCard(ft.Container):
+
+    def __init__(self, producto, agregar_carrito):
+        super().__init__()
+```
+
