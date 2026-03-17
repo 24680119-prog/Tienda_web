@@ -481,3 +481,22 @@ class ProductCard(ft.Container):
         super().__init__()
 ```
 
+## Gestión de Recursos (Assets)
+
+En este proyecto se utilizó una carpeta llamada assets para almacenar los recursos locales, específicamente las imágenes de los productos. Esta carpeta debe estar ubicada en el mismo directorio donde se encuentra el archivo principal del programa.
+
+Para que el framework Flet pueda reconocer y utilizar estas imágenes, se configuró el directorio de recursos al momento de ejecutar la aplicación, indicando la ruta de la carpeta assets. Esto permite que las imágenes puedan ser cargadas correctamente dentro de los componentes visuales.
+
+Dentro del código, las imágenes se utilizan mediante rutas relativas, accediendo al nombre del archivo almacenado en el diccionario de cada producto. De esta forma, cada tarjeta puede mostrar su imagen correspondiente sin necesidad de especificar rutas complejas.
+
+```python
+ft.run(main, assets_dir="assets")
+```
+```python
+ft.Image(
+    src=f"assets/{producto['ruta_imagen']}",
+    width=230,
+    height=150
+)
+```
+
