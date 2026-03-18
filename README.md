@@ -105,7 +105,7 @@ A continuación, se muestra el nombre del producto con un tamaño de texto mayor
 
 ## Visualización del Precio y Acciones del Producto
 
-En esta sección del código se completa la estructura visual de la tarjeta del producto, mostrando el precio y los botones de interacción disponibles para el usuario. Primero, se utiliza un componente Text para mostrar el precio del producto. Este se presenta con un formato que incluye el símbolo de moneda ($) y separadores de miles, lo que mejora la legibilidad. Además, el texto tiene un tamaño mayor y está en negrita, con el objetivo de destacarlo dentro de la tarjeta.
+En este fragmento del código se completa la estructura visual de la tarjeta del producto, mostrando el precio y los botones de interacción disponibles para el usuario. Primero, se utiliza un componente Text para mostrar el precio del producto. Este se presenta con un formato que incluye el símbolo de moneda ($) y separadores de miles, lo que mejora la legibilidad. Además, el texto tiene un tamaño mayor y está en negrita, con el objetivo de destacarlo dentro de la tarjeta.
 
 Posteriormente, se utiliza un componente Row para organizar horizontalmente los elementos de interacción. El parámetro alignment=SPACE_BETWEEN permite distribuir los elementos con espacio entre ellos, ubicando uno a la izquierda y otro a la derecha. Dentro de esta fila se incluyen dos elementos principales. El primero es el botón de favorito (corazon), que permite al usuario marcar o desmarcar el producto como favorito. El segundo es un botón de tipo ElevatedButton con el texto "Agregar al carrito" y un ícono de carrito de compras.
 
@@ -168,7 +168,7 @@ def main(page: ft.Page):
 ```
 
 ## Función para Agregar Productos al Carrito
-En esta parte del código se define la función agregar_carrito, la cual se encarga de gestionar la lógica para añadir productos al carrito de compras. La función recibe como parámetro un objeto llamado producto, que contiene la información del artículo seleccionado. A partir de este objeto, se obtiene el nombre del producto, el cual se utiliza como clave dentro del diccionario carrito. Luego, se verifica si el producto ya existe en el carrito. Si el nombre del producto ya está presente, se incrementa su cantidad en uno. En caso contrario, si es la primera vez que se agrega, se crea una nueva entrada en el diccionario con valor inicial de uno.
+Definimos en este apartado la función agregar_carrito, la cual se encarga de gestionar la lógica para añadir productos al carrito de compras. La función recibe como parámetro un objeto llamado producto, que contiene la información del artículo seleccionado. A partir de este objeto, se obtiene el nombre del producto, el cual se utiliza como clave dentro del diccionario carrito. Luego, se verifica si el producto ya existe en el carrito. Si el nombre del producto ya está presente, se incrementa su cantidad en uno. En caso contrario, si es la primera vez que se agrega, se crea una nueva entrada en el diccionario con valor inicial de uno.
 
 Posteriormente, se actualiza el contador visual del carrito. Para ello, se suman todas las cantidades almacenadas en el diccionario carrito utilizando la función sum, y el resultado se convierte a texto para mostrarlo en el componente contador. Finalmente, se utiliza page.update() para refrescar la interfaz gráfica, asegurando que los cambios realizados se reflejen inmediatamente en pantalla.
 
@@ -188,7 +188,7 @@ Posteriormente, se actualiza el contador visual del carrito. Para ello, se suman
 ```
 
 ## Función para Mostrar el Contenido del Carrito
-En esta seccion del código se define la función mostrar_carrito, la cual se encarga de mostrar en pantalla los productos que el usuario ha agregado al carrito de compras. La función recibe un parámetro llamado e, que corresponde al evento generado al hacer clic en el botón del carrito. Aunque no se utiliza directamente dentro de la función, es necesario para manejar el evento en Flet.
+Se define la función mostrar_carrito, la cual se encarga de mostrar en pantalla los productos que el usuario ha agregado al carrito de compras. La función recibe un parámetro llamado e, que corresponde al evento generado al hacer clic en el botón del carrito. Aunque no se utiliza directamente dentro de la función, es necesario para manejar el evento en Flet.
 
 Primero, se inicializa una variable llamada lista como una cadena de texto vacía. Esta variable se utilizará para construir el contenido que se mostrará al usuario. Luego, se recorre el diccionario carrito utilizando un ciclo for. En cada iteración, se obtienen el nombre del producto y la cantidad correspondiente. Estos valores se concatenan en la variable lista en un formato legible, por ejemplo: "Computadora x2", seguido de un salto de línea para separar cada producto.
 
@@ -272,7 +272,7 @@ En conjunto, la lista productos actúa como la fuente de datos principal de la a
 
 ```
 ##  Configuración del Contenedor de Productos (Grid)
-En esta parte del código se crea un contenedor llamado grid utilizando el componente Row del framework Flet. Este contenedor se utiliza para organizar y mostrar todas las tarjetas de productos dentro de la interfaz.
+Se crea un contenedor llamado grid utilizando el componente Row del framework Flet. Este contenedor se utiliza para organizar y mostrar todas las tarjetas de productos dentro de la interfaz.
 
 El parámetro wrap=True permite que los elementos se acomoden automáticamente en varias filas cuando no hay suficiente espacio horizontal, logrando un efecto similar a una cuadrícula adaptable.
 
@@ -292,7 +292,7 @@ En conjunto, este contenedor permite mostrar múltiples productos de forma orden
 
 ```
 ## Función para Mostrar los Productos en la Interfaz
-En este segmento del código se define la función mostrar_productos, la cual se encarga de generar y mostrar dinámicamente las tarjetas de productos en la interfaz gráfica. La función recibe como parámetro una lista llamada lista, que contiene los productos que se desean mostrar. Esto permite reutilizar la función tanto para mostrar todos los productos como para mostrar resultados filtrados.
+Se define la función mostrar_productos, la cual se encarga de generar y mostrar dinámicamente las tarjetas de productos en la interfaz gráfica. La función recibe como parámetro una lista llamada lista, que contiene los productos que se desean mostrar. Esto permite reutilizar la función tanto para mostrar todos los productos como para mostrar resultados filtrados.
 
 Primero, se utiliza grid.controls.clear() para eliminar cualquier elemento que ya esté presente en el contenedor grid. Esto es importante para evitar que los productos se dupliquen cuando la función se ejecuta varias veces. Luego, se recorre la lista de productos utilizando un ciclo for. En cada iteración, se crea una nueva instancia de la clase ProductCard, enviando como argumentos el producto actual y la función agregar_carrito. Cada tarjeta generada se agrega al contenedor grid mediante el método append.
 
@@ -311,7 +311,7 @@ Por ultimmo se llama a page.update() para actualizar la interfaz gráfica y refl
 ```
 ## Función de Búsqueda y Filtrado de Productos
 
-En esta parte del código se define la función filtrar_productos, la cual permite realizar una búsqueda dinámica de productos según el texto ingresado por el usuario. La función recibe como parámetro una cadena de texto llamada texto, que corresponde a lo que el usuario escribe en el campo de búsqueda. Primero, se crea una lista vacía llamada filtrados, la cual se utilizará para almacenar únicamente los productos que coincidan con la búsqueda.
+Se determina la función filtrar_productos, la cual permite realizar una búsqueda dinámica de productos según el texto ingresado por el usuario. La función recibe como parámetro una cadena de texto llamada texto, que corresponde a lo que el usuario escribe en el campo de búsqueda. Primero, se crea una lista vacía llamada filtrados, la cual se utilizará para almacenar únicamente los productos que coincidan con la búsqueda.
 
 Luego, se recorre la lista completa de productos mediante un ciclo for. En cada iteración, se toma un producto y se evalúa si el texto ingresado está contenido dentro del nombre del producto. Para ello, se utiliza el método lower(), tanto en el texto de búsqueda como en el nombre del producto, con el fin de hacer la comparación sin distinguir entre mayúsculas y minúsculas. Si el nombre del producto contiene el texto buscado, dicho producto se agrega a la lista filtrados.
 
@@ -360,7 +360,7 @@ Finalmente, se llama a la función mostrar_productos(productos), la cual se enca
 
 ```
 ## Diseño del Encabezado de la Aplicación
-En esta sección del código se define el encabezado (header) de la aplicación, el cual se utiliza para mostrar el título de la tienda y el acceso al carrito de compras. Para organizar los elementos, se utiliza un componente Row, que permite alinear los elementos de forma horizontal. El parámetro alignment=MainAxisAlignment.SPACE_BETWEEN distribuye los elementos dejando espacio entre ellos, posicionando el título a la izquierda y el carrito a la derecha.
+Se establece el encabezado (header) de la aplicación, el cual se utiliza para mostrar el título de la tienda y el acceso al carrito de compras. Para organizar los elementos, se utiliza un componente Row, que permite alinear los elementos de forma horizontal. El parámetro alignment=MainAxisAlignment.SPACE_BETWEEN distribuye los elementos dejando espacio entre ellos, posicionando el título a la izquierda y el carrito a la derecha.
 
 Dentro del encabezado, el primer elemento es un componente Text que muestra el título "TIENDA DE TECNOLOGÍA". Este texto se presenta con un tamaño grande, en negrita y color negro, con el objetivo de destacar el nombre de la aplicación. El segundo elemento es otro Row que contiene los componentes relacionados con el carrito de compras. Dentro de este se incluye un botón de tipo IconButton con el ícono de un carrito. Este botón tiene asignado el evento on_click, el cual ejecuta la función mostrar_carrito cuando el usuario hace clic, permitiendo visualizar los productos agregados.
 
