@@ -1,4 +1,4 @@
-## Tienda web Aplicacion 
+## Proyecto integrador de catalogo de Productos reutilizable 
 El sigueinte proyecto consiste en el desarrollo de una aplicación interactiva utilizando el lenguaje de programación Python junto con el framework Flet, el cual permite la creación de interfaces gráficas modernas de manera sencilla. La aplicación simula una tienda de tecnología donde se muestran diversos productos organizados en tarjetas visuales, cada una con información detallada como nombre, descripción, precio e imagen.
 
 El sistema permite al usuario interactuar con los productos mediante diferentes funcionalidades, como marcar artículos como favoritos, agregarlos a un carrito de compras y realizar búsquedas dinámicas a través de un campo de texto. Para lograr una estructura ordenada y reutilizable, se implementó una clase personalizada que representa cada producto, aplicando el concepto de Programación Orientada a Objetos (POO), específicamente el uso de herencia.
@@ -62,7 +62,7 @@ De esta forma, se logra una interacción dinámica que permite al usuario marcar
 ```
 
 ##  Estructura del Contenido de la Tarjeta de Producto
-En esta parte del código se define el contenido visual de la tarjeta del producto mediante la propiedad self.content. Para organizar los elementos, se utiliza un componente Column del framework Flet, el cual permite distribuir los elementos de forma vertical. El parámetro spacing=10 establece un espacio entre cada uno de los elementos dentro de la columna, logrando una mejor organización visual. Dentro de la lista controls se agregan los distintos componentes que representan la información del producto. En primer lugar, se muestra el identificador (ID) del producto utilizando un componente Text, el cual incluye formato en negrita y color negro para resaltar la información.
+Se define el contenido visual de la tarjeta del producto mediante la propiedad self.content. Para organizar los elementos, se utiliza un componente Column del framework Flet, el cual permite distribuir los elementos de forma vertical. El parámetro spacing=10 establece un espacio entre cada uno de los elementos dentro de la columna, logrando una mejor organización visual. Dentro de la lista controls se agregan los distintos componentes que representan la información del producto. En primer lugar, se muestra el identificador (ID) del producto utilizando un componente Text, el cual incluye formato en negrita y color negro para resaltar la información.
 
 Posteriormente, se incluye una imagen del producto mediante el componente Image. La imagen se carga desde la carpeta de recursos "assets", utilizando la ruta especificada en los datos del producto. Además, se definen dimensiones específicas (ancho y alto) para mantener un diseño uniforme. 
 
@@ -168,9 +168,7 @@ def main(page: ft.Page):
 ```
 
 ## Función para Agregar Productos al Carrito
-En esta sección del código se define la función agregar_carrito, la cual se encarga de gestionar la lógica para añadir productos al carrito de compras.
-
-La función recibe como parámetro un objeto llamado producto, que contiene la información del artículo seleccionado. A partir de este objeto, se obtiene el nombre del producto, el cual se utiliza como clave dentro del diccionario carrito. Luego, se verifica si el producto ya existe en el carrito. Si el nombre del producto ya está presente, se incrementa su cantidad en uno. En caso contrario, si es la primera vez que se agrega, se crea una nueva entrada en el diccionario con valor inicial de uno.
+En esta parte del código se define la función agregar_carrito, la cual se encarga de gestionar la lógica para añadir productos al carrito de compras. La función recibe como parámetro un objeto llamado producto, que contiene la información del artículo seleccionado. A partir de este objeto, se obtiene el nombre del producto, el cual se utiliza como clave dentro del diccionario carrito. Luego, se verifica si el producto ya existe en el carrito. Si el nombre del producto ya está presente, se incrementa su cantidad en uno. En caso contrario, si es la primera vez que se agrega, se crea una nueva entrada en el diccionario con valor inicial de uno.
 
 Posteriormente, se actualiza el contador visual del carrito. Para ello, se suman todas las cantidades almacenadas en el diccionario carrito utilizando la función sum, y el resultado se convierte a texto para mostrarlo en el componente contador. Finalmente, se utiliza page.update() para refrescar la interfaz gráfica, asegurando que los cambios realizados se reflejen inmediatamente en pantalla.
 
@@ -190,7 +188,7 @@ Posteriormente, se actualiza el contador visual del carrito. Para ello, se suman
 ```
 
 ## Función para Mostrar el Contenido del Carrito
-En esta parte del código se define la función mostrar_carrito, la cual se encarga de mostrar en pantalla los productos que el usuario ha agregado al carrito de compras. La función recibe un parámetro llamado e, que corresponde al evento generado al hacer clic en el botón del carrito. Aunque no se utiliza directamente dentro de la función, es necesario para manejar el evento en Flet.
+En esta seccion del código se define la función mostrar_carrito, la cual se encarga de mostrar en pantalla los productos que el usuario ha agregado al carrito de compras. La función recibe un parámetro llamado e, que corresponde al evento generado al hacer clic en el botón del carrito. Aunque no se utiliza directamente dentro de la función, es necesario para manejar el evento en Flet.
 
 Primero, se inicializa una variable llamada lista como una cadena de texto vacía. Esta variable se utilizará para construir el contenido que se mostrará al usuario. Luego, se recorre el diccionario carrito utilizando un ciclo for. En cada iteración, se obtienen el nombre del producto y la cantidad correspondiente. Estos valores se concatenan en la variable lista en un formato legible, por ejemplo: "Computadora x2", seguido de un salto de línea para separar cada producto.
 
@@ -217,7 +215,7 @@ De esta manera, esta función permite visualizar de forma clara y organizada los
 
 
 ## Definición de la Lista de Productos
-En esta sección del código se define una lista llamada productos, la cual contiene la información de todos los artículos que se mostrarán en la tienda.
+En este apartado del código se define una lista llamada productos, la cual contiene la información de todos los artículos que se mostrarán en la tienda.
 
 Esta lista está compuesta por varios diccionarios, donde cada diccionario representa un producto diferente. Cada producto incluye atributos específicos que describen sus características, como el identificador (id), el nombre (nombre), la descripción (descripcion), el precio (precio) y la ruta de la imagen (ruta_imagen).
 
@@ -294,7 +292,7 @@ En conjunto, este contenedor permite mostrar múltiples productos de forma orden
 
 ```
 ## Función para Mostrar los Productos en la Interfaz
-En esta sección del código se define la función mostrar_productos, la cual se encarga de generar y mostrar dinámicamente las tarjetas de productos en la interfaz gráfica. La función recibe como parámetro una lista llamada lista, que contiene los productos que se desean mostrar. Esto permite reutilizar la función tanto para mostrar todos los productos como para mostrar resultados filtrados.
+En este segmento del código se define la función mostrar_productos, la cual se encarga de generar y mostrar dinámicamente las tarjetas de productos en la interfaz gráfica. La función recibe como parámetro una lista llamada lista, que contiene los productos que se desean mostrar. Esto permite reutilizar la función tanto para mostrar todos los productos como para mostrar resultados filtrados.
 
 Primero, se utiliza grid.controls.clear() para eliminar cualquier elemento que ya esté presente en el contenedor grid. Esto es importante para evitar que los productos se dupliquen cuando la función se ejecuta varias veces. Luego, se recorre la lista de productos utilizando un ciclo for. En cada iteración, se crea una nueva instancia de la clase ProductCard, enviando como argumentos el producto actual y la función agregar_carrito. Cada tarjeta generada se agrega al contenedor grid mediante el método append.
 
@@ -313,15 +311,9 @@ Por ultimmo se llama a page.update() para actualizar la interfaz gráfica y refl
 ```
 ## Función de Búsqueda y Filtrado de Productos
 
-En esta parte del código se define la función filtrar_productos, la cual permite realizar una búsqueda dinámica de productos según el texto ingresado por el usuario.
+En esta parte del código se define la función filtrar_productos, la cual permite realizar una búsqueda dinámica de productos según el texto ingresado por el usuario. La función recibe como parámetro una cadena de texto llamada texto, que corresponde a lo que el usuario escribe en el campo de búsqueda. Primero, se crea una lista vacía llamada filtrados, la cual se utilizará para almacenar únicamente los productos que coincidan con la búsqueda.
 
-La función recibe como parámetro una cadena de texto llamada texto, que corresponde a lo que el usuario escribe en el campo de búsqueda.
-
-Primero, se crea una lista vacía llamada filtrados, la cual se utilizará para almacenar únicamente los productos que coincidan con la búsqueda.
-
-Luego, se recorre la lista completa de productos mediante un ciclo for. En cada iteración, se toma un producto y se evalúa si el texto ingresado está contenido dentro del nombre del producto. Para ello, se utiliza el método lower(), tanto en el texto de búsqueda como en el nombre del producto, con el fin de hacer la comparación sin distinguir entre mayúsculas y minúsculas.
-
-Si el nombre del producto contiene el texto buscado, dicho producto se agrega a la lista filtrados.
+Luego, se recorre la lista completa de productos mediante un ciclo for. En cada iteración, se toma un producto y se evalúa si el texto ingresado está contenido dentro del nombre del producto. Para ello, se utiliza el método lower(), tanto en el texto de búsqueda como en el nombre del producto, con el fin de hacer la comparación sin distinguir entre mayúsculas y minúsculas. Si el nombre del producto contiene el texto buscado, dicho producto se agrega a la lista filtrados.
 
 Finalmente, se llama a la función mostrar_productos, enviando la lista filtrada como argumento. Esto permite actualizar la interfaz gráfica y mostrar únicamente los productos que coinciden con la búsqueda.
 
@@ -340,7 +332,7 @@ De esta manera, se implementa un sistema de búsqueda en tiempo real que mejora 
 
 ```
 ## Implementación del Buscador de Productos
-En esta sección del código se implementa el campo de búsqueda que permite al usuario filtrar los productos de manera dinámica. Se crea un componente TextField llamado buscador, el cual funciona como una barra de búsqueda donde el usuario puede escribir el nombre del producto que desea encontrar. El atributo hint_text muestra un texto de ayuda dentro del campo ("Buscar producto..."), indicando su función.
+En este fragmento del código se implementa el campo de búsqueda que permite al usuario filtrar los productos de manera dinámica. Se crea un componente TextField llamado buscador, el cual funciona como una barra de búsqueda donde el usuario puede escribir el nombre del producto que desea encontrar. El atributo hint_text muestra un texto de ayuda dentro del campo ("Buscar producto..."), indicando su función.
 
 Además, se configuran propiedades visuales como el ancho (width), el color de fondo (bgcolor) y los estilos del texto y del placeholder (hint_style), estableciendo color negro y negrita para mejorar la visibilidad. La propiedad más importante es on_change, la cual se ejecuta cada vez que el usuario escribe o modifica el contenido del campo. En este caso, se utiliza una función lambda que llama a la función filtrar_productos, enviando como argumento el texto actual ingresado por el usuario (e.control.value). Esto permite que la búsqueda se realice en tiempo real.
 
@@ -427,9 +419,7 @@ ft.run(main, assets_dir="assets")
 ```
 
 ## Diagrama de Clases de la Aplicación
-El diagrama de clases representa de forma visual la estructura del programa, mostrando las clases utilizadas y la relación entre ellas.
-
-En esta aplicación se identifican dos elementos principales: la clase ProductCard y la función principal main. La clase ProductCard es un componente personalizado que hereda de la clase Container del framework Flet, lo que le permite comportarse como un elemento visual dentro de la interfaz.
+El diagrama de clases representa de forma visual la estructura del programa, mostrando las clases utilizadas y la relación entre ellas. En esta aplicación se identifican dos elementos principales: la clase ProductCard y la función principal main. La clase ProductCard es un componente personalizado que hereda de la clase Container del framework Flet, lo que le permite comportarse como un elemento visual dentro de la interfaz.
 
 Por otro lado, la función main actúa como el controlador principal de la aplicación, ya que se encarga de crear la interfaz gráfica, gestionar los datos y generar múltiples instancias de la clase ProductCard para mostrar los productos.
 
@@ -785,3 +775,4 @@ ft.run(main, assets_dir="assets")
 
 Link de pagina web en Netlify
 https://statuesque-flan-66945e.netlify.app/
+<img width="1918" height="997" alt="image" src="https://github.com/user-attachments/assets/5925109a-7ae2-4661-863f-ae066c3d78b4" />
